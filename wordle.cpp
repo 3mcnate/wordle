@@ -3,6 +3,9 @@
 #include <cstdlib>
 #include <ctime>
 #include "util.h"
+#include <fstream>
+#include <cstring>
+#include <stdlib.h>
 
 using namespace std;
 
