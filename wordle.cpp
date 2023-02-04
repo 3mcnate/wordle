@@ -56,17 +56,17 @@ int main(int argc, char **argv)
 
     while (p1GuessRemain > 0 && p2GuessRemain > 0 && p1Won == false && p2Won == false)
     {
-        if (p1GuessRemain < 5)
+        if (p1GuessRemain < 7)
         {
             cout << "Dont scroll up." << endl;
         }
         cout << p1 << ", make your guess: " << endl;
         cin >> g1;
-        if (g1.size() != 5)
-        { // || !isWord(g1)
+        if (g1.size() != 5 || !isWordValid(validWords, g1))
+        { 
             cout << "Please enter a word that is 5 letters long: " << endl;
             cin >> g1;
-            while (g1.size() != 5)
+            while (g1.size() != 5 || !isWordValid(validWords, g1))
             {
                 cout << "Please enter a word that is 5 letters long: " << endl;
                 cin >> g1;
@@ -98,6 +98,10 @@ int main(int argc, char **argv)
             p1Won = true;
         }
 
+        cout << "Press Enter to Continue" << endl;
+        cin.ignore();
+        cin.get();
+        
         for (int k = 0; k < 100; k++)
         { // clear the terminal at end of turn
             cout << endl;
@@ -116,8 +120,8 @@ int main(int argc, char **argv)
         { 
             cout << "Please enter a word that is 5 letters long: " << endl;
             cin >> g2;
-            while (g2.size() != 5)
-            { // || !isWord(g1)
+            while (g2.size() != 5 || !isWordValid(validWords, g2))
+            { 
                 cout << "Please enter a word that is 5 letters long: " << endl;
                 cin >> g2;
             }
@@ -149,13 +153,9 @@ int main(int argc, char **argv)
             break;
         }
 
-        // wait for user to enter a character
+        cout << "Press Enter to Continue" << endl;
+        cin.ignore();
         cin.get();
-
-        // if(!p2Won){
-        //     cout << "Enter a character to end your turn." << endl;
-        //     cin >> temp;
-        // }
 
         for (int k = 0; k < 100; k++)
         { // clear the terminal at end of turn
