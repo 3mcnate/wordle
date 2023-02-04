@@ -54,3 +54,40 @@ bool isWordValid(std::set<std::string>* wordList, std::string word)
     if (wordList->find(word) == wordList->end()) return false;
     return true;
 }  
+
+bool checkWord(string input, string word)
+{
+    // make input all lowercase 
+	for (int i = 0; i < word.length(); i++)
+  	{
+  		word[i] = tolower(word[i]);
+  	}
+
+    if (input == word){
+        // correct guess
+        cout << "\x1b[32m" << "Correct! Your word was: " << input << "\x1b[0m" << endl;
+        return true;
+    }
+
+    char correctWord [5] = {word[0], word[1], word[2], word[3], word[4]};
+
+    // print the word with correct colors
+    for (int i=0; i<5; i++){
+        if (input[i] == word[i]){
+            // print that index in green
+            cout << "\x1b[32m" << input[i] << "\x1b[0m";
+            correctWord[i] = '\0';
+
+        } else if ((input[i] == correctWord[0]) || (input[i] == correctWord[1]) || (input[i] == correctWord[2]) || (input[i] == correctWord[3]) || (input[i] == correctWord[4])){
+            // print that index in yellow 
+            cout << "\x1b[33m" << input[i] << "\x1b[0m";
+
+        } else {
+            // print in red
+            cout << "\x1b[31m" << input[i] << "\x1b[0m";
+
+        }
+    }
+    cout << endl;
+    return false;
+}
