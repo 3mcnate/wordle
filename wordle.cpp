@@ -137,14 +137,14 @@ bool isGuessValid(const std::string& word, std::set<std::string>* wordList)
 
 void switchTurns(Player& player)
 {
-    for (int i = 0; i < 50; i++) {
+    for (int i = 0; i < 100; i++) {
         cout << endl;
     }
 
     cout << player.name() << ", press ENTER to start your turn." << endl;
     cin.get();
 
-    for (int i = 0; i < 50; i++) {
+    for (int i = 0; i < 100; i++) {
         cout << endl;
     }
 }

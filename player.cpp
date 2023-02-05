@@ -12,29 +12,36 @@ Guess::Guess(std::string guess, std::string solution)
     stringstream colored_word;
     correct_ = guess == solution;
 
+    int matchingCodes[LENGTH] = { };
+
     for (int i = 0; i < LENGTH; i++)
     {
-
-        char letter = guess[i];
-        stringstream letterWithBrackets;
-        letterWithBrackets << '[' << letter << ']';
-
-        // complete match
-        if (letter == solution[i])
-        {
-            colored_word << green(letterWithBrackets.str());
+        if (guess[i] == solution[i]) {
+            matchingCodes[i] = 2;
+            solution[i] = '-';
         }
+    }
 
-        // partial match
-        else if (solution.find(letter) != string::npos)
-        {
+    for (int i = 0; i < LENGTH; i++)
+    {
+        if (solution.find(guess[i]) != string::npos) {
+            matchingCodes[i] = 1;
+        }
+    }
+
+    for (int i = 0; i < LENGTH; i++)
+    {
+        stringstream letterWithBrackets;
+        letterWithBrackets << '[' << guess[i] << ']';
+
+        if (matchingCodes[i] == 0) {
+            colored_word << red(letterWithBrackets.str());
+        }
+        else if (matchingCodes[i] == 1) {
             colored_word << yellow(letterWithBrackets.str());
         }
-
-        // no match
-        else
-        {
-            colored_word << red(letterWithBrackets.str());
+        else {
+            colored_word << green(letterWithBrackets.str());
         }
     }
 
