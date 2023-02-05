@@ -26,6 +26,7 @@ Guess::Guess(std::string guess, std::string solution)
     {
         if (solution.find(guess[i]) != string::npos) {
             matchingCodes[i] = 1;
+            solution[solution.find(guess[i])] = '-';
         }
     }
 
@@ -77,8 +78,10 @@ void Player::addGuess(std::string guess, std::string solution)
         won_ = true;
     }
 
-    remainingGuesses_--;
+    for (int i = 0; i < guess.length(); i++) 
+        guessedLetters_.insert(guess[i]);
 
+    remainingGuesses_--;
     guesses_.push_back(g);
 }
 
@@ -99,4 +102,9 @@ void Player::printLastGuess()
 {
     if (guesses_.size() > 0)
         cout << guesses_[guesses_.size() - 1].coloredWord() << endl;
+}
+
+void Player::printKeyboard()
+{
+    
 }

@@ -24,7 +24,7 @@ std::string getRandomWord(const char *filename)
     getline(file, word);
 
 #ifdef DEBUG
-    cout << "Solution word is: " << word << endl;
+    cout << red("DEBUG: ") << "Solution word is: " << word << endl;
 #endif
 
     return word;
@@ -76,4 +76,16 @@ std::string green(std::string word)
     stringstream ss;
     ss << "\x1b[32m" << word << "\x1b[0m";
     return ss.str();
+}
+
+void clearScreen(int lines)
+{
+    for (int i = 0; i < lines; i++) 
+        cout << endl;
+}
+
+std::string convToLower(std::string src)
+{
+    std::transform(src.begin(), src.end(), src.begin(), ::tolower);
+    return src;
 }

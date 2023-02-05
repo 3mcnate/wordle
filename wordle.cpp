@@ -2,10 +2,14 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <cctype>
+#include <cstring>
 #include "util.h"
 #include "player.h"
 
 using namespace std;
+
+#define TURNS 7
 
 void turn(Player& player, const std::string& solution, std::set<std::string>* wordList);
 
@@ -48,14 +52,14 @@ int main(int argc, char **argv)
     }
 
     string name;
-
+    
     cout << "Player 1, enter your name: " << endl;
     cin >> name;
-    Player p1(name);
+    Player p1(name, TURNS);
 
     cout << "Player 2, enter your name: " << endl;
     cin >> name;
-    Player p2(name);
+    Player p2(name, TURNS);
 
     cout << endl;
 
@@ -73,24 +77,30 @@ int main(int argc, char **argv)
         if (!done) switchTurns(p1);
     }
 
-    cout << endl << endl << endl << endl;
+    clearScreen();
 
     if (!p1.won() && !p2.won())
     {
         cout << "Nobody Wins!" << endl;
+        cout << "The word was " << green(solution) << endl;
     }
     else if (p1.won() && p2.won())
     {
         cout << "Tie!" << endl;
+        cout << "The word was " << green(solution) << endl;
     }
     else if (p1.won() && !p2.won())
     {
-        cout << p1.name() << " Won! Better luck next time " << p2.name() << "." << endl;
+        cout << p1.name() << " won! Better luck next time " << (p2.name()) << "." << endl;
+        cout << "The word was " << green(solution) << endl;
     }
     else
     {
-        cout << p2.name() << " Won! Better luck next time " << p1.name() << "." << endl;
+        cout << (p2.name()) << " won! Better luck next time " << (p1.name()) << "." << endl;
+        cout << "The word was " << green(solution) << endl;
     }
+
+    cout << endl << endl;
 
     delete validWords;
     return 0;
@@ -104,15 +114,20 @@ void turn(Player& player, const std::string& solution, std::set<std::string>* wo
     string guess;
     cout << player.name() << ", make your guess: " << endl;
     cin >> guess;
+    guess = convToLower(guess);
 
     while (!isGuessValid(guess, wordList)) {
         cin >> guess;
+        guess = convToLower(guess);
     }
 
     cout << endl;
 
     player.addGuess(guess, solution);
     player.printLastGuess();
+
+    if (player.won()) 
+        cout << endl << green("You guessed the word!") << endl;
 
     cout << endl;
 
@@ -137,14 +152,10 @@ bool isGuessValid(const std::string& word, std::set<std::string>* wordList)
 
 void switchTurns(Player& player)
 {
-    for (int i = 0; i < 100; i++) {
-        cout << endl;
-    }
+    clearScreen();
 
     cout << player.name() << ", press ENTER to start your turn." << endl;
     cin.get();
 
-    for (int i = 0; i < 100; i++) {
-        cout << endl;
-    }
+    clearScreen();
 }

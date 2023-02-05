@@ -23,6 +23,7 @@ public:
     void addGuess(std::string guess, std::string solution);
     void printGuesses();
     void printLastGuess();
+    void printKeyboard();
 
     int remainingGuesses() { return remainingGuesses_; }
     std::string name() { return name_; }
@@ -34,6 +35,7 @@ private:
     std::vector<Guess> guesses_;
     int remainingGuesses_;
     bool won_;
+    std::set<char> guessedLetters_;
 };
 
 #endif

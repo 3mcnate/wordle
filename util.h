@@ -14,4 +14,8 @@ std::string red(std::string word);
 std::string yellow(std::string word);
 std::string green(std::string word);
 
+void clearScreen(int lines = 100);
+
+std::string convToLower(std::string src);
+
 #endif
