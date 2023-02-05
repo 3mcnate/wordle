@@ -51,6 +51,12 @@ std::set<std::string> *readValidWords(const char *filename)
 
 bool isWordValid(std::set<std::string>* wordList, std::string word)
 {
+    // make input all lowercase 
+	for (int i = 0; i < word.length(); i++)
+	{
+		word[i] = tolower(word[i]);
+	}
+
     if (wordList->find(word) == wordList->end()) return false;
     return true;
 }  
