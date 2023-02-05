@@ -60,6 +60,9 @@ int main(int argc, char **argv)
     while(p1GuessRemain > 0 && p2GuessRemain > 0 && p1Won == false && p2Won == false){
         if(p1GuessRemain < 7){
             cout << "Dont scroll up." << endl;
+            cout << "Here is your previous guess: " << endl;
+            checkWord(g1, word);
+            cout << endl;
         }
         cout << p1 << ", make your guess: " << endl;
         cin >> g1;
@@ -87,7 +90,12 @@ int main(int argc, char **argv)
 
         //player 2's turn
         cout << "Dont scroll up." << endl;
-        
+        if(p2GuessRemain < 7){
+            cout << "Dont scroll up." << endl;
+            cout << "Here is your previous guess: " << endl;
+            checkWord(g2, word);
+            cout << endl;
+        }
 
         cout << p2 << ", make your guess: " << endl;
         cin >> g2;
@@ -119,6 +127,7 @@ int main(int argc, char **argv)
 
     if(p1Won == false && p2Won == false){
         cout << "Nobody Wins!" << endl;
+        cout << "The correct word was " << word << endl;
     }else if(p1Won == true && p2Won == true){
         cout << "Tie game." << endl;
     }else if(p1Won == true && p2Won == false){
