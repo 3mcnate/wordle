@@ -10,7 +10,7 @@ std::string getRandomWord(const char *filename);
 
 bool isWordValid(std::set<std::string>* wordList, std::string word);
 
-bool checkWord(string input, string word);
+bool checkWord(std::string input, std::string word);
 
 
 
