@@ -92,7 +92,6 @@ int main(int argc, char **argv)
         cout << endl;
 
         //player 2's turn
-        cout << "Dont scroll up." << endl;
         if(p2GuessRemain < 7){
             cout << p2 << ", press Enter to start your turn." << endl;
             cin.ignore();
