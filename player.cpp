@@ -78,8 +78,8 @@ void Player::addGuess(std::string guess, std::string solution)
         won_ = true;
     }
 
-    for (int i = 0; i < guess.length(); i++) 
-        guessedLetters_.insert(guess[i]);
+    //for (int i = 0; i < guess.length(); i++) 
+     //   guessedLetters_.insert(guess[i]);
 
     remainingGuesses_--;
     guesses_.push_back(g);

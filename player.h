@@ -35,7 +35,7 @@ private:
     std::vector<Guess> guesses_;
     int remainingGuesses_;
     bool won_;
-    std::set<char> guessedLetters_;
+    //std::set<char> guessedLetters_;
 };
 
 #endif
