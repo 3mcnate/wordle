@@ -9,16 +9,18 @@
 
 using namespace std;
 
-#define TURNS 7
+#define TURNS 6
 
 void turn(Player& player, const std::string& solution, std::set<std::string>* wordList);
 
 bool isGuessValid(const std::string& word, std::set<std::string>* wordList);
 
-void switchTurns(Player& player);
+void switchTurns(std::string n1, std::string n2);
 
 int main(int argc, char **argv)
 {
+    clearScreen();
+
     cout << endl;
     cout << "\x1b[36m $$\\      $$\\                           $$\\ $$\\           \x1b[0m" << endl;
     cout << "\x1b[36m $$ | $\\  $$ |                          $$ |$$ |          \x1b[0m" << endl;
@@ -28,7 +30,7 @@ int main(int argc, char **argv)
     cout << "\x1b[35m $$$  / \\$$$ |$$ |  $$ |$$ |      $$ |  $$ |$$ |$$   ____|\x1b[0m" << endl;
     cout << "\x1b[34m $$  /   \\$$ |\\$$$$$$  |$$ |      \\$$$$$$$ |$$ |\\$$$$$$$\\ \x1b[0m" << endl;
     cout << "\x1b[34m \\__/     \\__| \\______/ \\__|       \\_______|\\__| \\_______|\x1b[0m" << endl;
-    cout << endl;
+    cout << endl << endl;
 
     if (argc < 3)
     {
@@ -61,7 +63,7 @@ int main(int argc, char **argv)
     cin >> name;
     Player p2(name, TURNS);
 
-    cout << endl;
+    clearScreen();
 
     // main program loop
     bool done = false;
@@ -69,12 +71,12 @@ int main(int argc, char **argv)
         turn(p1, solution, validWords);
         if (p1.won() || p1.remainingGuesses() == 0) done = true;
 
-        switchTurns(p2);
+        switchTurns(p2.name(), p1.name());
 
         turn(p2, solution, validWords);
         if (p2.won() || p2.remainingGuesses() == 0) done = true;
 
-        if (!done) switchTurns(p1);
+        if (!done) switchTurns(p1.name(), p2.name());
     }
 
     clearScreen();
@@ -97,8 +99,16 @@ int main(int argc, char **argv)
     else
     {
         cout << (p2.name()) << " won! Better luck next time " << (p1.name()) << "." << endl;
-        cout << "The word was " << green(solution) << endl;
+        cout << "The word was " << green(solution) << endl << endl;
     }
+
+    cout << p1.name() << " guessed: " << endl;
+    p1.printGuesses();
+
+    cout << endl;
+
+    cout << p2.name() << " guessed: " << endl;
+    p2.printGuesses();
 
     cout << endl << endl;
 
@@ -112,6 +122,11 @@ void turn(Player& player, const std::string& solution, std::set<std::string>* wo
     cout << endl;
 
     string guess;
+
+#ifdef DEBUG
+    cout << red("DEBUG: ") << "Solution word is: " << solution << endl;
+#endif
+
     cout << player.name() << ", make your guess: " << endl;
     cin >> guess;
     guess = convToLower(guess);
@@ -150,11 +165,11 @@ bool isGuessValid(const std::string& word, std::set<std::string>* wordList)
     return true;
 }
 
-void switchTurns(Player& player)
+void switchTurns(std::string n1, std::string n2)
 {
     clearScreen();
 
-    cout << player.name() << ", press ENTER to start your turn." << endl;
+    cout << n1 << ", press ENTER to start your turn. Make sure " << n2 << " is not looking at the screen." << endl;
     cin.get();
 
     clearScreen();

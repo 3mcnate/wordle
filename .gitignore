@@ -6,3 +6,5 @@ test.cpp
 test
 test.dSYM/
 .DS_Store
+wordled
+wordled.dSYM/
