@@ -61,6 +61,9 @@ int main(int argc, char **argv)
     while(p1GuessRemain > 0 && p2GuessRemain > 0 && p1Won == false && p2Won == false){
         if(p1GuessRemain < 7){
             cout << "Dont scroll up." << endl;
+            cout << "Press Enter to start your turn." << endl;
+            cin.ignore();
+            cin.get();
             cout << "Here is your previous guess: " << endl;
             checkWord(g1, word);
             cout << endl;
@@ -92,6 +95,9 @@ int main(int argc, char **argv)
         //player 2's turn
         cout << "Dont scroll up." << endl;
         if(p2GuessRemain < 7){
+            cout << "Press Enter to start your turn." << endl;
+            cin.ignore();
+            cin.get();
             cout << "Here is your previous guess: " << endl;
             checkWord(g2, word);
             cout << endl;
