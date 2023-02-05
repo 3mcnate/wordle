@@ -16,14 +16,14 @@ void switchTurns(Player& player);
 int main(int argc, char **argv)
 {
     cout << endl;
-    cout << "$$\\      $$\\                           $$\\ $$\\           " << endl;
-    cout << "$$ | $\\  $$ |                          $$ |$$ |          " << endl;
-    cout << "$$ |$$$\\ $$ | $$$$$$\\   $$$$$$\\   $$$$$$$ |$$ | $$$$$$\\  " << endl;
-    cout << "$$ $$ $$\\$$ |$$  __$$\\ $$  __$$\\ $$  __$$ |$$ |$$  __$$\\ " << endl;
-    cout << "$$$$  _$$$$ |$$ /  $$ |$$ |  \\__|$$ /  $$ |$$ |$$$$$$$$ |" << endl;
-    cout << "$$$  / \\$$$ |$$ |  $$ |$$ |      $$ |  $$ |$$ |$$   ____|" << endl;
-    cout << "$$  /   \\$$ |\\$$$$$$  |$$ |      \\$$$$$$$ |$$ |\\$$$$$$$\\ " << endl;
-    cout << "\\__/     \\__| \\______/ \\__|       \\_______|\\__| \\_______|" << endl;
+    cout << "\x1b[36m $$\\      $$\\                           $$\\ $$\\           \x1b[0m" << endl;
+    cout << "\x1b[36m $$ | $\\  $$ |                          $$ |$$ |          \x1b[0m" << endl;
+    cout << "\x1b[36m $$ |$$$\\ $$ | $$$$$$\\   $$$$$$\\   $$$$$$$ |$$ | $$$$$$\\  \x1b[0m" << endl;
+    cout << "\x1b[35m $$ $$ $$\\$$ |$$  __$$\\ $$  __$$\\ $$  __$$ |$$ |$$  __$$\\ \x1b[0m" << endl;
+    cout << "\x1b[35m $$$$  _$$$$ |$$ /  $$ |$$ |  \\__|$$ /  $$ |$$ |$$$$$$$$ |\x1b[0m" << endl;
+    cout << "\x1b[35m $$$  / \\$$$ |$$ |  $$ |$$ |      $$ |  $$ |$$ |$$   ____|\x1b[0m" << endl;
+    cout << "\x1b[34m $$  /   \\$$ |\\$$$$$$  |$$ |      \\$$$$$$$ |$$ |\\$$$$$$$\\ \x1b[0m" << endl;
+    cout << "\x1b[34m \\__/     \\__| \\______/ \\__|       \\_______|\\__| \\_______|\x1b[0m" << endl;
     cout << endl;
 
     if (argc < 3)
@@ -98,6 +98,9 @@ int main(int argc, char **argv)
 
 void turn(Player& player, const std::string& solution, std::set<std::string>* wordList)
 {
+    player.printGuesses();
+    cout << endl;
+
     string guess;
     cout << player.name() << ", make your guess: " << endl;
     cin >> guess;
@@ -106,11 +109,15 @@ void turn(Player& player, const std::string& solution, std::set<std::string>* wo
         cin >> guess;
     }
 
+    cout << endl;
+
     player.addGuess(guess, solution);
-    player.printGuesses();
+    player.printLastGuess();
+
+    cout << endl;
 
     cout << "Press enter to end your turn." << endl;
-    cin.get();
+    cin.get(); cin.get();
 }
 
 bool isGuessValid(const std::string& word, std::set<std::string>* wordList)

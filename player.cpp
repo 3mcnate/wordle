@@ -10,7 +10,7 @@ using namespace std;
 Guess::Guess(std::string guess, std::string solution)
 {
     stringstream colored_word;
-    correct_ = true;
+    correct_ = guess == solution;
 
     for (int i = 0; i < LENGTH; i++)
     {
@@ -29,14 +29,12 @@ Guess::Guess(std::string guess, std::string solution)
         else if (solution.find(letter) != string::npos)
         {
             colored_word << yellow(letterWithBrackets.str());
-            correct_ = false;
         }
 
         // no match
         else
         {
             colored_word << red(letterWithBrackets.str());
-            correct_ = false;
         }
     }
 
@@ -88,4 +86,10 @@ void Player::printGuesses()
 bool Player::won()
 {
     return won_ && remainingGuesses_ != 0;
+}
+
+void Player::printLastGuess()
+{
+    if (guesses_.size() > 0)
+        cout << guesses_[guesses_.size() - 1].coloredWord() << endl;
 }

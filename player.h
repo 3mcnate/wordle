@@ -22,6 +22,8 @@ public:
 
     void addGuess(std::string guess, std::string solution);
     void printGuesses();
+    void printLastGuess();
+
     int remainingGuesses() { return remainingGuesses_; }
     std::string name() { return name_; }
 
