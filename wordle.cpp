@@ -92,7 +92,6 @@ int main(int argc, char **argv)
         //player 2's turn
         cout << "Dont scroll up." << endl;
         if(p2GuessRemain < 7){
-            cout << "Dont scroll up." << endl;
             cout << "Here is your previous guess: " << endl;
             checkWord(g2, word);
             cout << endl;
