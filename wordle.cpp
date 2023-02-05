@@ -63,10 +63,10 @@ int main(int argc, char **argv)
         }
         cout << p1 << ", make your guess: " << endl;
         cin >> g1;
-        if(g1.size() != 5){ // || !isWord(g1)
+        if(g1.size() != 5 || !isWordValid(validWords, g1)){ 
             cout << "Please enter a word that is 5 letters long: " << endl;
             cin >> g1;
-            while(g1.size() != 5){ // || !isWord(g1)
+            while(g1.size() != 5 || !isWordValid(validWords, g1)){ 
                 cout << "Please enter a word that is 5 letters long: " << endl;
                 cin >> g1;
             }
@@ -91,10 +91,10 @@ int main(int argc, char **argv)
 
         cout << p2 << ", make your guess: " << endl;
         cin >> g2;
-        if(g2.size() != 5){ // || !isWord(g2)
+        if(g2.size() != 5 || !isWordValid(validWords, g2)){ // || !isWord(g2)
             cout << "Please enter a word that is 5 letters long: " << endl;
             cin >> g2;
-            while(g2.size() != 5){ // || !isWord(g2)
+            while(g2.size() != 5 || !isWordValid(validWords, g2)){ // || !isWord(g2)
                 cout << "Please enter a word that is 5 letters long: " << endl;
                 cin >> g2;
             }
