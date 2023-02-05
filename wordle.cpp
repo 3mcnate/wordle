@@ -71,7 +71,7 @@ int main(int argc, char **argv)
                 cin >> g1;
             }
         }
-        p1Won = checkGuess(g1, word);
+        p1Won = checkWord(g1, word);
 
         cout << "Press Enter to Continue" << endl;
         cin.ignore();
@@ -99,7 +99,7 @@ int main(int argc, char **argv)
                 cin >> g2;
             }
         }
-        p2Won = checkGuess(g2, word);
+        p2Won = checkWord(g2, word);
 
         cout << "Press Enter to Continue" << endl;
         cin.ignore();
