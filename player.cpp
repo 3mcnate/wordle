@@ -72,6 +72,8 @@ void Player::addGuess(std::string guess, std::string solution)
         won_ = true;
     }
 
+    remainingGuesses_--;
+
     guesses_.push_back(g);
 }
 
@@ -85,5 +87,5 @@ void Player::printGuesses()
 
 bool Player::won()
 {
-    return won_;
+    return won_ && remainingGuesses_ != 0;
 }
