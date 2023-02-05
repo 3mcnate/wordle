@@ -1,6 +1,7 @@
 #include "util.h"
 #include <fstream>
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -49,8 +50,30 @@ std::set<std::string> *readValidWords(const char *filename)
     return allWords;
 }
 
-bool isWordValid(std::set<std::string>* wordList, std::string word)
+bool isWordValid(std::set<std::string> *wordList, std::string word)
 {
-    if (wordList->find(word) == wordList->end()) return false;
+    if (wordList->find(word) == wordList->end())
+        return false;
     return true;
-}  
+}
+
+std::string red(std::string word)
+{
+    stringstream ss;
+    ss << "\x1b[31m" << word << "\x1b[0m";
+    return ss.str();
+}
+
+std::string yellow(std::string word)
+{
+    stringstream ss;
+    ss << "\x1b[33m" << word << "\x1b[0m";
+    return ss.str();
+}
+
+std::string green(std::string word)
+{
+    stringstream ss;
+    ss << "\x1b[32m" << word << "\x1b[0m";
+    return ss.str();
+}
