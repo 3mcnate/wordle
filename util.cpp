@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -76,6 +77,20 @@ std::string green(std::string word)
     stringstream ss;
     ss << "\x1b[32m" << word << "\x1b[0m";
     return ss.str();
+}
+
+std::string red(char c)
+{
+    return red(string(1, c));
+}
+
+std::string yellow(char c)
+{
+    return yellow(string(1,c));
+}
+std::string green(char c)
+{
+    return green(string(1,c));
 }
 
 void clearScreen(int lines)
