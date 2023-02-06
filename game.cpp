@@ -1,5 +1,5 @@
-#include "game.h"
 #include <iostream>
+#include "game.h"
 #include "util.h"
 
 using namespace std;
@@ -78,6 +78,20 @@ std::string gamemode2setup(std::string n1, std::string n2, std::set<std::string>
 {
     clearScreen();
     cout << n1 << ", choose a word for " << n2 << "." << endl;
+    std::string suggestions[3];
+
+    for (int i = 0; i < 3; i++) {
+        std::set<string>::iterator it = wordList->begin();
+        int wordIndex = rand() % wordList->size();
+        for (int j = 0; j < wordIndex; j++) {
+            ++it;
+        }
+        suggestions[i] = *it;
+    }
+
+    cout << "Suggested words: "; for (int i=0; i < 3; i++) cout << suggestions[i] << " ";
+    cout << endl;
+
     string word;
     cin >> word;
     word = convToLower(word);

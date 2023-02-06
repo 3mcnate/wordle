@@ -28,10 +28,11 @@ std::string getRandomWord(const char *filename)
     cout << red("DEBUG: ") << "Solution word is: " << word << endl;
 #endif
 
+    file.close();
     return word;
 }
 
-std::set<std::string> *readValidWords(const char *filename)
+std::set<std::string> *readWords(const char *filename)
 {
     ifstream file(filename);
     if (file.fail())
@@ -48,6 +49,7 @@ std::set<std::string> *readValidWords(const char *filename)
         allWords->insert(word);
     }
 
+    file.close();
     return allWords;
 }
 
@@ -86,16 +88,16 @@ std::string red(char c)
 
 std::string yellow(char c)
 {
-    return yellow(string(1,c));
+    return yellow(string(1, c));
 }
 std::string green(char c)
 {
-    return green(string(1,c));
+    return green(string(1, c));
 }
 
 void clearScreen(int lines)
 {
-    for (int i = 0; i < lines; i++) 
+    for (int i = 0; i < lines; i++)
         cout << endl;
 }
 

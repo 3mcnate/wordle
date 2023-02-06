@@ -4,7 +4,7 @@
 #include <set>
 #include <string>
 
-std::set<std::string> *readValidWords(const char *filename);
+std::set<std::string> *readWords(const char *filename);
 
 std::string getRandomWord(const char *filename);
 
